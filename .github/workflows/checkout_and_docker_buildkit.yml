@@ -1,0 +1,14 @@
+name: Checkout your repo, build with Docker Buildkit
+
+on: [push]
+
+jobs:
+    manzo-e-birra:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v2
+            - name: Build Docker image with Buildkit
+              run: DOCKER_BUILDKIT=1 docker build -t my_awesome_image .
+            - name: Run Docker container
+              run: docker run my_awesome_image
